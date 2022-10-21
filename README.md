@@ -5,7 +5,7 @@ This is my repo following the implementation of the Space Invaders game. Inspire
 ___
 Challenging Targets:
 
-* [x] ~~ Challenging Target ~~ 
+* [x] ~~ Sideways Shooter: Write a game that places a ship on the left side of the screen and allows the player to move the ship up and down.  ~~ 
 
 ___
 
