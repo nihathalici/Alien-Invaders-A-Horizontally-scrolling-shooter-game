@@ -5,11 +5,13 @@ This is my repo following the implementation of the Space Invaders game. Inspire
 ___
 ## Challenging Targets:
 
-* [x]  Sideways Shooter: Write a game that places a ship on the left side of the screen and allows the player to move the ship up and down. 
-* [x] Game Character: Find a bitmap image of a game character you like or convert an image to a bitmap. 
-* [x] Stars: Find an image of a star. Make a grid of stars appear on the screen.
-* [x] Sideways Shooter Part 2: Add a fleet of aliens, and make them move sideways toward the ship.
-* [x] Press P to Play: Because Alien Invasion uses keyboard input to control the ship, it would be useful to start the game with a keypress. 
+* [x] **Sideways Shooter:** Write a game that places a ship on the left side of the screen and allows the player to move the ship up and down. 
+* [x] **Game Character:** Find a bitmap image of a game character you like or convert an image to a bitmap. 
+* [x] **Stars:** Find an image of a star. Make a grid of stars appear on the screen.
+* [x] **Sideways Shooter Part 2:** Add a fleet of aliens, and make them move sideways toward the ship.
+* [x] **Press P to Play:** Because Alien Invasion uses keyboard input to control the ship, it would be useful to start the game with a keypress. 
+* [x] **Difficulty Levels:** Make a set of buttons for Alien Invasion that allows the player to select an appropriate starting difficulty level for the game.
+* [x] **Difficulty Levels:** All-Time High Score: The high score is reset every time a player closes and restarts Alien Invasion. 
 
 ___
 
