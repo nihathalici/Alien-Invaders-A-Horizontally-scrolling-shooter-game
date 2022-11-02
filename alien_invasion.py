@@ -1,4 +1,18 @@
 import sys
+from time import sleep
+import pygame
+import json
+from settings import Settings
+from achtergrond import Background
+from game_stats import GameStats
+from scoreboard import Scoreboard
+from easy_button import EasyButton
+from medium_button import MediumButton
+from hard_button import HardButton
+from ship import Ship
+from bullet import Bullet
+from alien import Alien
+import sounds
 
 class AlienInvasion:
 
