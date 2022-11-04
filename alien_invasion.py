@@ -44,19 +44,61 @@ class AlienInvasion:
 
 
 	def run_game(self):
-		pass
+		"""Start the main loop for the game."""
+		while True:
+			self._check_events()
+			if self.stats.game_active:
+				self.ship.update()
+				self._update_bullets()
+				self._update_aliens()
+			self._update_screen()
 
+	
 	def _check_events(self):
-		pass
+		"""Respond to keypresses and mouse events."""
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				sys.exit()
+			elif event.type == pygame.KEYDOWN:
+				self._check_keydown_events(event)
+			elif event.type == pygame.KEYUP:
+				self._check_keyup_events(event)
+			if event.type == pygame.MOUSEBUTTONDOWN:
+				mouse_pos = pygame.mouse.get_pos()
+				self._check_easy_play_button(mouse_pos)
+			if event.type == pygame.MOUSEBUTTONDOWN:
+				mouse_pos = pygame.mouse.get_pos()
+				self._check_medium_play_button(mouse_pos)
+			if event.type == pygame.MOUSEBUTTONDOWN:
+				mouse_pos = pygame.mouse.get_pos()
+				self._check_hard_play_button(mouse_pos)
+
 
 	def _check_easy_play_button(self, mouse_pos):
-		pass
+		"""Start a new game when the player clicks Easy Modus Button."""
+		button_clicked = self.play_easy_button.rect.collidepoint(mouse_pos)
+		if button_clicked and not self.stats.game_active:
+			self._start_game()
+			# Reset the game settings.
+			self.settings.initialize_easy_dynamic_settings()
+
 
 	def _check_medium_play_button(self, mouse_pos):
-		pass
+		"""Start a new game when the player clicks Medium Modus Button."""
+		button_clicked = self.play_medium_button.rect.collidepoint(mouse_pos)
+		if button_clicked and not self.stats.game_active:
+			self._start_game()
+			# Reset the game settings.
+			self.settings.initialize_medium_dynamic_settings()
+			
 
 	def _check_hard_play_button(self, mouse_pos):
-		pass
+		"""Start a new game when the player clicks Hard Modus Button."""
+		button_clicked = self.play_hard_button.rect.collidepoint(mouse_pos)
+		if button_clicked and not self.stats.game_active:
+			self._start_game()
+		    # Reset the game settings.
+			self.settings.initialize_hard_dynamic_settings()
 
 	def _check_keydown_events(self, event):
 		pass
