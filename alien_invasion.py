@@ -101,22 +101,72 @@ class AlienInvasion:
 			self.settings.initialize_hard_dynamic_settings()
 
 	def _check_keydown_events(self, event):
-		pass
+		"""Respond to keypresses."""
+		if event.key == pygame.K_UP:
+			self.ship.moving_top = True
+		elif event.key == pygame.K_DOWN:
+			self.ship.moving_bottom = True
+		elif event.key == pygame.K_q:
+			sys.exit()
+		elif event.key == pygame.K_SPACE:
+			self._fire_bullet()
+		elif event.key == pygame.K_p:
+			self._start_game()
 
 	def _start_game(self):
-		pass
+		# Reset the game statistics.
+		self.stats.reset_stats()
+		self.stats.game_active = True
+		self.sb.prep_images()
+
+		# Get rid of any remaining aliens and bullets.
+		self.aliens.empty()
+		self.bullets.empty()
+
+		# Create a new fleet and center the ship.
+		self._create_fleet()
+		self.ship.center_ship()
+
+		# Hide the mouse cursor.
+		pygame.mouse.set_visible(False)
+		
 
 	def _check_keyup_events(self, event):
-		pass
+		"""Respond to key releases."""
+		if event.key == pygame.K_UP:
+			self.ship.moving_top = False
+		elif event.key == pygame.K_DOWN:
+			self.ship.moving_bottom = False	
 
 	def _fire_bullet(self):
-		pass
+		"""Create a new bullet and add it to the bullets group."""
+		if len(self.bullets) < self.settings.bullets_allowed:
+			new_bullet = Bullet(self)
+			self.bullets.add(new_bullet)
+			sounds.bullet_sound.play()
 
 	def _update_bullets(self):
-		pass
+		"""Update position of bullets and get rid of old bullets."""
+		# Update bullet positions.
+		self.bullets.update()
+
+		# Get rid of bullets that have disappeared.
+		for bullet in self.bullets.copy():
+			if bullet.rect.x >= self.settings.screen_width:
+				self.bullets.remove(bullet)
+		
+		self._check_bullet_alien_collisions()
+
 
 	def _check_bullet_alien_collisions(self):
-		pass
+		"""Respond to bullet-alien collisions."""
+		# Remove any bullets and aliens that have collided.
+		collisions = pygame.sprite.groupcollide(
+			self.bullets, self.aliens, True, True)
+		self.sb.prep_images()
+		sounds.hit_sound.play()
+		self.sb.check_high_score()
+		self._start_new_level()
 
 	def _start_new_level(self):
 		pass
