@@ -169,13 +169,41 @@ class AlienInvasion:
 		self._start_new_level()
 
 	def _start_new_level(self):
-		pass
+		if not self.aliens:
+			# Destroy existing bullets and create new fleet.
+			self.bullets.empty()
+			self._create_fleet()
+			self.settings.increase_speed()
+
+			# Increase level.
+			self.stats.level += 1
+			self.sb.prep_images()
+
 
 	def _update_aliens(self):
-		pass
+		"""
+		Check if the fleet is at an edge,
+		  then update the positions of all aliens in the fleet.
+		"""
+		self._check_fleet_edges()
+		self.aliens.update()
 
+		# Look for alien-ship collisions.
+		if pygame.sprite.spritecollideany(self.ship, self.aliens):
+			self._ship_hit()
+		
+		# Look for aliens hitting the bottom of the screen.
+		self._check_aliens_bottom()
+		
 	def _check_aliens_bottom(self):
-		pass
+		"""Check if any aliens have reached the bottom of the screen."""
+		screen_rect = self.screen.get_rect()
+		for alien in self.aliens.sprites():
+			if alien.rect.left <= screen_rect.left:
+				# Treat this the same as if the ship got hit.
+				self._ship_hit()
+				break
+
 
 	def _ship_hit(self):
 		pass
